@@ -7,38 +7,39 @@ public class FirstOccurrenceIndexInSortedArray {
 
 //		int arr[] = { 5, 5, 5 };
 
-		int key = 7;
+		int key = 6;
 
 		System.out.println(find(arr, arr.length, key));
 
 		System.out.println(find_Recursive(arr, 0, arr.length - 1, key));
-		
+
 		System.out.println(find_Iterative(arr, arr.length, key));
 
 	}
 
 	private static int find_Iterative(int[] arr, int n, int key) {
-		int low = 0, high = n -1;
-		
-		while(low <= high)
-		{
+
+		int low = 0, high = n - 1;
+
+		while (low <= high) {
 			int mid = low + (high - low) / 2;
-			
-			if(arr[mid] > key)
+
+			if (arr[mid] > key)
 				high = mid - 1;
-			
-			if(arr[mid] < key)
+
+			if (arr[mid] < key)
 				low = mid + 1;
-			
-			else
-			{
-				if(mid == 0 || arr[mid] != arr[mid - 1])
+
+			else {
+				// checking that mid element is first occurrence => arr[mid] != arr[mid - 1]
+				// above cond. throws outofboundsexception when mid == 0, so we used " || "
+				if (mid == 0 || arr[mid] != arr[mid - 1])
 					return mid;
 				else
 					high = mid - 1;
 			}
 		}
-		
+
 		return -1;
 	}
 
