@@ -10,6 +10,31 @@ public class TwoPointer {
 		int x = 17;
 
 		find_Naive(arr, arr.length, x);
+
+		find_Efficient(arr, arr.length, x);
+	}
+
+	private static void find_Efficient(int[] arr, int n, int x) {
+
+		int l = 0, h = n - 1;
+		boolean flag = false;
+
+		while (l < h) {
+			int sum = arr[l] + arr[h];
+
+			if (sum == x) {
+				System.out.println("Pairs = " + arr[l] + ", " + arr[h]);
+				flag = true;
+				break;
+			} else if (sum > x)
+				h--;
+			else
+				l++;
+
+		}
+
+		if (!flag)
+			System.out.println("No Pairs...");
 	}
 
 	private static void find_Naive(int[] arr, int n, int x) {
