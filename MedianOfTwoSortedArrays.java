@@ -14,7 +14,7 @@ public class MedianOfTwoSortedArrays {
 	}
 
 	// Naive - T.C - O((n1+n2)log(n1+n2)) ; A.S - O(n1+n2)
-	private static float find_Naive(int[] a1, int[] a2, int n1, int n2) {
+	private static double find_Naive(int[] a1, int[] a2, int n1, int n2) {
 
 		int temp[] = new int[n1 + n2];
 
@@ -32,7 +32,7 @@ public class MedianOfTwoSortedArrays {
 			return temp[(n1 + n2) / 2];
 
 		else {
-			float ans = temp[(n1 + n2) / 2] + temp[((n1 + n2) / 2) - 1];
+			double ans = temp[(n1 + n2) / 2] + temp[((n1 + n2) / 2) - 1];
 
 			return ans / 2;
 		}
