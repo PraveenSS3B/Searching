@@ -11,6 +11,42 @@ public class MedianOfTwoSortedArrays {
 
 		System.out.println(find_Naive(a1, a2, a1.length, a2.length));
 
+		System.out.println(find_Efficient(a1, a2, a1.length, a2.length));
+
+	}
+
+	private static double find_Efficient(int[] a1, int[] a2, int n1, int n2) {
+
+		int begin = 0, end = n1;
+
+		while (begin <= end) {
+			int i1 = begin + (end - begin) / 2;
+
+			int i2 = ((n1 + n2 + 1) / 2) - i1;
+
+			int a1Min = (i1 == n1) ? Integer.MAX_VALUE : a1[i1];
+
+			int a1Max = (i1 == 0) ? Integer.MIN_VALUE : a1[i1 - 1];
+
+			int a2Min = (i2 == n2) ? Integer.MAX_VALUE : a2[i2];
+
+			int a2Max = (i2 == 0) ? Integer.MIN_VALUE : a2[i2 - 1];
+
+			if (a1Max <= a2Min && a2Max <= a1Min) {
+				if ((n1 + n2) % 2 == 0)
+					return ((double) Math.max(a1Max, a2Max) + Math.min(a2Min, a1Min)) / 2;
+
+				else
+					return (double) Math.max(a2Max, a1Max);
+			}
+
+			else if (a1Max > a2Min)
+				end = i1 - 1;
+			else
+				begin = i1 + 1;
+		}
+		return 0;
+
 	}
 
 	// Naive - T.C - O((n1+n2)log(n1+n2)) ; A.S - O(n1+n2)
