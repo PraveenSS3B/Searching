@@ -24,23 +24,24 @@ public class MedianOfTwoSortedArrays {
 
 			int i2 = ((n1 + n2 + 1) / 2) - i1;
 
-			int a1Min = (i1 == n1) ? Integer.MAX_VALUE : a1[i1];
+			int a1Min_RightSide = (i1 == n1) ? Integer.MAX_VALUE : a1[i1];
 
-			int a1Max = (i1 == 0) ? Integer.MIN_VALUE : a1[i1 - 1];
+			int a1Max_LeftSide = (i1 == 0) ? Integer.MIN_VALUE : a1[i1 - 1];
 
-			int a2Min = (i2 == n2) ? Integer.MAX_VALUE : a2[i2];
+			int a2Min_RightSide = (i2 == n2) ? Integer.MAX_VALUE : a2[i2];
 
-			int a2Max = (i2 == 0) ? Integer.MIN_VALUE : a2[i2 - 1];
+			int a2Max_LeftSide = (i2 == 0) ? Integer.MIN_VALUE : a2[i2 - 1];
 
-			if (a1Max <= a2Min && a2Max <= a1Min) {
+			if (a1Max_LeftSide <= a2Min_RightSide && a2Max_LeftSide <= a1Min_RightSide) {
 				if ((n1 + n2) % 2 == 0)
-					return ((double) Math.max(a1Max, a2Max) + Math.min(a2Min, a1Min)) / 2;
+					return ((double) Math.max(a1Max_LeftSide, a2Max_LeftSide)
+							+ Math.min(a2Min_RightSide, a1Min_RightSide)) / 2;
 
 				else
-					return (double) Math.max(a2Max, a1Max);
+					return (double) Math.max(a2Max_LeftSide, a1Max_LeftSide);
 			}
 
-			else if (a1Max > a2Min)
+			else if (a1Max_LeftSide > a2Min_RightSide)
 				end = i1 - 1;
 			else
 				begin = i1 + 1;
