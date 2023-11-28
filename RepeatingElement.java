@@ -15,7 +15,20 @@ public class RepeatingElement {
 
 		System.out.println(find_SuperNaive(arr, arr.length));
 		System.out.println(find_Naive(arr, arr.length));
+		System.out.println(find_Efficient(arr, arr.length));
 
+	}
+
+	private static int find_Efficient(int[] arr, int n) {
+		boolean visited[] = new boolean[n - 1];
+
+		for (int i = 0; i < n; i++) {
+			if (visited[arr[i]])
+				return arr[i];
+
+			visited[i] = true;
+		}
+		return -1;
 	}
 
 	private static int find_Naive(int[] arr, int n) {
